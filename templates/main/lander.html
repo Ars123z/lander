@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Danda Series</title>
+    <link rel="stylesheet" href="{% static 'main/css/lander.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/modal.css' %}">
+</head>
+
+<body>
+    <!-- Logo Circle with "I" -->
+    <div class="logo-circle">
+        <span>I</span>
+    </div>
+
+    <div class="landing-container">
+        <header class="header">
+            <!-- Instagram handle link -->
+            <div>
+                <h1 class="brand">
+                    <a href="https://www.instagram.com/Iamatharjamal/" class="insta-handle"
+                        target="_blank">@Iamatharjamal</a>
+                </h1>
+            </div>
+            <p id="tag">Insta handle</p>
+            <h2 class="tagline">Epic Danda Series: <span class="highlight">"Get Hooked!"</span></h2>
+            <p class="subtext">Love bags? Love cash? Become a style ambassador!</p>
+        </header>
+
+        <div class="hero-section">
+            <div class="image-wrapper">
+                <img src="{% static 'main/images/hero.jpg' %}" alt="Hero Image" class="hero-image">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+        <div class="cta-container">
+            <span class="circle-pattern"></span>
+            <a href="{% url 'register' %}" class="cta-button">Step into the conversation</a>
+        </div>
+        <div class="cta-container">
+            <span class="circle-pattern"></span>
+            <a onclick="toggleModal()" class="cta-button">Style Ambassador Program FAQ's</a>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="faqModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal()">×</span>
+            <h2>Style Ambassador Program FAQs</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">What is the Style Ambassador
+                        Program?</button>
+                    <div class="faq-answer">
+                        <p>The Style Ambassador Program is a community initiative where you can promote our products,
+                            engage with customers, and earn rewards for your efforts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">How do I become a Style Ambassador?</button>
+                    <div class="faq-answer">
+                        <p>Sign up through our registration page, meet the eligibility criteria, and complete the
+                            onboarding process to start as a Style Ambassador.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">What's included in the Starter Kit?</button>
+                    <div class="faq-answer">
+                        <p>The Starter Kit includes promotional materials, a welcome guide, and product samples to help
+                            you get started.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">How much money can I earn?</button>
+                    <div class="faq-answer">
+                        <p>Earnings depend on your sales and performance; detailed commission structures are provided
+                            upon joining.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">Is there a minimum sales
+                        requirement?</button>
+                    <div class="faq-answer">
+                        <p>Yes, there is a minimum sales target that you need to meet monthly, details of which are
+                            outlined in the ambassador agreement.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">How do I sell bags?</button>
+                    <div class="faq-answer">
+                        <p>You can sell bags through social media, personal networks, and our provided online portal
+                            using the marketing tools and strategies we supply.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">What are the benefits of recruiting
+                        others?</button>
+                    <div class="faq-answer">
+                        <p>Recruiting others earns you additional bonuses and a percentage of their sales, enhancing
+                            your overall earnings potential.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">How do I get paid?</button>
+                    <div class="faq-answer">
+                        <p>You'll get paid based on your sales performance, with commissions credited monthly to your
+                            account.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">What kind of support will I get?</button>
+                    <div class="faq-answer">
+                        <p>You'll receive training, marketing materials, and ongoing support from our team to help you
+                            succeed.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">Can I return the Starter Kit if I change my
+                        mind?</button>
+                    <div class="faq-answer">
+                        <p>Yes, you can return the Starter Kit within 30 days, provided it's in its original condition.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">What if I have more questions?</button>
+                    <div class="faq-answer">
+                        <p>You can reach out to our support team anytime via email or through the ambassador portal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('faqModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const container = element.parentElement;
+            const isOpen = answer.style.maxHeight;
+
+            // Close all other answers
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.style.maxHeight = null;
+                item.parentElement.classList.remove('active');
+            });
+
+            // Toggle the clicked answer
+            if (!isOpen) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                container.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>

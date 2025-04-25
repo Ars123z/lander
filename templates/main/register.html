@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Style Ambassador Form</title>
+    <link rel="stylesheet" href="{% static 'main/css/register.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="page-container">
+        <p class="form-header">Fill up this form get a chance to be our style Ambassador</p>
+
+        <div class="form-card">
+            <h2>Step Into the Conversation</h2>
+            <p class="mandatory-note">* All stared filled are mandatory</p>
+
+            <form action="#" method="POST" class="ambassador-form">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Name*" required>
+                <input type="email" name="email" placeholder="Email*" required>
+                <select name="country" id="country-select" required>
+                    <option value="" disabled selected>Country*</option>
+                </select>
+                <div class="phone-wrapper">
+                    <select id="country-code-select" name="country_code" required>
+                        <option disabled selected>Loading...</option>
+                    </select>
+                    <input type="tel" name="phone" placeholder="Phone*" required>
+                </div>
+                <textarea name="message" placeholder="Message"></textarea>
+
+                <p class="disclaimer">
+                    By submitting your contact details, you consent to us contacting you either through phone or email
+                    to further our relationship.
+                </p>
+
+                <button type="submit" class="submit-button">Send</button>
+            </form>
+        </div>
+
+        <p class="email-info">
+            Shortly after you submit the form you will receive a welcome email you will find your plan as an attachment
+            in it.
+        </p>
+        <hr id="divider" />
+        <p class="contact-info">
+            If you any query or doubt you can contact us at<br>
+            <strong>Iamjamalathar@gmail.com</strong>
+        </p>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const countryCodeSelect = document.getElementById("country-code-select");
+        const countrySelect = document.getElementById("country-select");
+
+        let countryDataMap = [];
+
+        const fetchCountries = async () => {
+            const response = await fetch("https://restcountries.com/v3.1/all");
+            const countries = await response.json();
+            return countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+        };
+
+        const populateDropdowns = (countries) => {
+            countryDataMap = countries
+                .filter(c => c.idd?.root && c.idd.suffixes?.length)
+                .map(country => ({
+                    name: country.name.common,
+                    dialCode: country.idd.root + country.idd.suffixes[0],
+                    flag: country.flags?.png
+                }));
+
+            // Clear dropdowns
+            countryCodeSelect.innerHTML = "";
+            countrySelect.innerHTML = "";
+
+            // Default placeholders
+            const defaultCodeOption = document.createElement("option");
+            defaultCodeOption.value = "";
+            defaultCodeOption.disabled = true;
+            defaultCodeOption.selected = true;
+            defaultCodeOption.textContent = "Dial Code*";
+            countryCodeSelect.appendChild(defaultCodeOption);
+
+            const defaultNameOption = document.createElement("option");
+            defaultNameOption.value = "";
+            defaultNameOption.disabled = true;
+            defaultNameOption.selected = true;
+            defaultNameOption.textContent = "Country*";
+            countrySelect.appendChild(defaultNameOption);
+
+            countryDataMap.forEach(({ name, dialCode, flag }) => {
+                const codeOption = document.createElement("option");
+                codeOption.value = dialCode;
+                codeOption.textContent = `${name} (${dialCode})`;
+                codeOption.dataset.name = name;
+                codeOption.dataset.flag = flag;
+                countryCodeSelect.appendChild(codeOption);
+
+                const nameOption = document.createElement("option");
+                nameOption.value = name;
+                nameOption.textContent = name;
+                nameOption.dataset.dial = dialCode;
+                nameOption.dataset.flag = flag;
+                countrySelect.appendChild(nameOption);
+            });
+        };
+
+        const addSyncListeners = () => {
+            countryCodeSelect.addEventListener("change", () => {
+                const selectedDial = countryCodeSelect.value;
+                const match = countryDataMap.find(c => c.dialCode === selectedDial);
+                if (match) {
+                    countrySelect.value = match.name;
+
+                    // Update the selected text to just show the dial code
+                    const selectedOption = countryCodeSelect.options[countryCodeSelect.selectedIndex];
+                    selectedOption.textContent = match.dialCode;
+                }
+            });
+
+            countrySelect.addEventListener("change", () => {
+                const selectedName = countrySelect.value;
+                const match = countryDataMap.find(c => c.name === selectedName);
+                if (match) {
+                    countryCodeSelect.value = match.dialCode;
+
+                    // Update the selected text to just show the dial code
+                    const selectedOption = countryCodeSelect.options[countryCodeSelect.selectedIndex];
+                    selectedOption.textContent = match.dialCode;
+                }
+            });
+        };
+
+        fetchCountries()
+            .then(countries => {
+                populateDropdowns(countries);
+                addSyncListeners();
+            })
+            .catch(() => {
+                countryCodeSelect.innerHTML = '<option disabled selected>Could not load country codes</option>';
+                const errorOption = document.createElement("option");
+                errorOption.textContent = "Failed to load countries.";
+                errorOption.disabled = true;
+                countrySelect.appendChild(errorOption);
+            });
+    });
+</script>
+
+</html>

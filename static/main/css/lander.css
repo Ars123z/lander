@@ -1,0 +1,279 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #b30000;
+    /* Deep red */
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.landing-container {
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.brand {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 8rem 0 0.5rem 0;
+}
+
+/* Styling for Instagram handle link */
+.insta-handle {
+    color: white;
+    /* Instagram pink */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2rem;
+    /* adjust font size */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+#tag {
+    color: black;
+    font-style: italic;
+    font-size: 1rem;
+    margin-top: -0.5rem;
+    font-weight: bold;
+}
+
+.insta-handle:hover {
+    color: #C13584;
+    /* Darker shade on hover */
+    text-decoration: underline;
+}
+
+.insta-handle:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(228, 64, 95, 0.4);
+    /* Soft Instagram theme shadow */
+}
+
+
+.tagline {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    color: #ffd700;
+    /* gold accent */
+    font-style: italic;
+}
+
+.subtext {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-section {
+    margin: 2rem 0;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.hero-image {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* semi-transparent black */
+    border-radius: 12px;
+}
+
+
+.cta-container {
+    margin-top: 2rem;
+}
+
+.cta-button {
+    display: block;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 999px;
+    /* pill shape */
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin: 1.5rem 1.5rem 0 0;
+    /* equal side margins */
+    position: relative;
+}
+
+.cta-button .circle-pattern {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    /* size of the circle */
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0.1) 60%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.cta-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.cta-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+
+.logo-circle {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    /* increased top margin */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    /* increased size */
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 3rem;
+    /* scale up the "I" */
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    color: black;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    height: 400px;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-item {
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #e0e0e0;
+}
+
+.faq-question.active {
+    background-color: #ddd;
+}
+
+.faq-question::after {
+    content: '⌄';
+    /* Chevron down */
+    font-size: 0.8rem;
+}
+
+.faq-question.active::after {
+    content: '⌃';
+    /* Chevron up */
+}
+
+.faq-answer {
+    max-height: 0;
+    padding: 0 15px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.faq-item.active {
+    padding-bottom: 10px;
+}
