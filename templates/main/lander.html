@@ -183,6 +183,7 @@
                     </p>
                     
                     <button type="submit" class="submit-button" id="submit-button">Send</button>
+                    <button type="submit" id="submitting-button" disabled>Sending..</button>
                 </form>
             </div>
 
@@ -218,9 +219,13 @@
             const formWrapper = document.getElementById('form-wrapper');
             const thankYouWrapper = document.getElementById('thank-you-wrapper');
             const registerModal = document.getElementById('registerModal');
+            const submitButton = document.getElementById('submit-button');
+            const submittingButton = document.getElementById('submitting-button');
 
             document.getElementById('ambassador-form').addEventListener('submit', function (event) {
                 event.preventDefault();
+                submitButton.style.display = 'none';
+                submittingButton.style.display = 'block';
 
                 const formData = new FormData(this);
 

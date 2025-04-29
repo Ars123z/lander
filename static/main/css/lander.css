@@ -452,6 +452,18 @@ select {
     cursor: pointer;
 }
 
+#submitting-button {
+    display: none;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
 /* Thankyou  message */
 
 #thank-you-wrapper {
