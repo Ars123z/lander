@@ -17,7 +17,7 @@
             <h2>Step Into the Conversation</h2>
             <p class="mandatory-note">* All stared filled are mandatory</p>
 
-            <form action="#" method="POST" class="ambassador-form">
+            <form action="" method="POST" class="ambassador-form">
                 {% csrf_token %}
                 <input type="text" name="name" placeholder="Name*" required>
                 <input type="email" name="email" placeholder="Email*" required>
@@ -150,5 +150,51 @@
             });
     });
 </script>
+
+<form id="ambassadorForm">
+    <!-- Your form fields here -->
+    <button type="submit">Submit</button>
+</form>
+
+<div id="modalContent">
+    <!-- This will show the form initially -->
+</div>
+
+<script>
+document.getElementById('ambassadorForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // stop form from submitting normally
+
+    const formData = new FormData(this);
+
+    fetch("{% url 'register' %}", {
+        method: "POST",
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest', // optional but good for Django to know it's an AJAX request
+            'X-CSRFToken': '{{ csrf_token }}'      // important to include CSRF token!
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        print(data.status); // Log the response for debugging
+        if (data.status == 'success') {
+            // Change modal content to thank you message
+            document.getElementById('modalContent').innerHTML = `
+                <div class="thank-you-message">
+                    <h2>Thank you for registering!</h2>
+                    <p>We appreciate your interest.</p>
+                </div>
+            `;
+        } else {
+            alert('Something went wrong. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
+});
+</script>
+
 
 </html>

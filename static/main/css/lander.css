@@ -1,25 +1,48 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #b30000;
+    background: linear-gradient(to bottom, #cc0000, #760303);
     /* Deep red */
     color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    width: 100vw;
 }
 
 .landing-container {
-    max-width: 800px;
     padding: 2rem;
 }
 
-.brand {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 8rem 0 0.5rem 0;
+.logo-circle {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    /* increased top margin */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    /* increased size */
+    height: 100px;
+    background-color: rgba(71, 27, 27, 0.7);
+    color: white;
+    font-size: 2.5rem;
+    /* scale up the "I" */
+    font-weight: semibold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.header {
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* centers horizontally */
+    justify-content: center;
+    /* centers vertically */
+    text-align: center;
+    /* centers inline text */
 }
 
 /* Styling for Instagram handle link */
@@ -28,63 +51,40 @@ body {
     /* Instagram pink */
     text-decoration: none;
     font-weight: bold;
-    font-size: 2rem;
+    font-size: 24px;
     /* adjust font size */
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-}
 
-#tag {
-    color: black;
-    font-style: italic;
-    font-size: 1rem;
-    margin-top: -0.5rem;
-    font-weight: bold;
 }
 
 .insta-handle:hover {
-    color: #C13584;
     /* Darker shade on hover */
     text-decoration: underline;
 }
 
-.insta-handle:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(228, 64, 95, 0.4);
-    /* Soft Instagram theme shadow */
-}
-
-
 .tagline {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 18px;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
 }
-
-.highlight {
-    color: #ffd700;
-    /* gold accent */
-    font-style: italic;
-}
-
 .subtext {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.hero-section {
-    margin: 2rem 0;
+    font-size: 18px;
 }
 
 .image-wrapper {
     position: relative;
     display: inline-block;
-    width: 100%;
+    width: 580px;
+        height: 326px;
     max-width: 100%;
 }
 
 .hero-image {
     width: 100%;
+    height: 100%;
     display: block;
     border-radius: 12px;
+    /* Ensure the image covers the container */
+        object-fit: cover;
 }
 
 .image-overlay {
@@ -93,16 +93,33 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0, 0.5));
     /* semi-transparent black */
     border-radius: 12px;
+    pointer-events: none;
 }
 
+.image-text {
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: regular;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
 
 .cta-container {
+    position: relative;
     margin-top: 2rem;
 }
 
+.far {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
 .cta-button {
     display: block;
     width: 100%;
@@ -110,8 +127,7 @@ body {
     background-color: transparent;
     border: 2px solid white;
     color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border-radius: 999px;
     /* pill shape */
     text-align: center;
@@ -137,7 +153,6 @@ body {
 }
 
 .cta-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
 }
 
@@ -147,29 +162,7 @@ body {
 }
 
 
-.logo-circle {
-    position: absolute;
-    top: 50px;
-    bottom: 50px;
-    /* increased top margin */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    /* increased size */
-    height: 100px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    font-size: 3rem;
-    /* scale up the "I" */
-    font-weight: bold;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-}
-
-.modal {
+ .modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -196,6 +189,9 @@ body {
 }
 
 .close {
+    position: absolute;
+        top: 7%;
+        left: 90%;
     color: #aaa;
     float: right;
     font-size: 24px;
@@ -209,9 +205,10 @@ body {
     text-decoration: none;
 }
 
-.modal-content h2 {
+.modal-content .heading {
     margin-bottom: 20px;
-    font-size: 1.5rem;
+    font-size: 1rem;
+        font-weight: 300;
     text-align: center;
 }
 
@@ -251,17 +248,6 @@ body {
     background-color: #ddd;
 }
 
-.faq-question::after {
-    content: '⌄';
-    /* Chevron down */
-    font-size: 0.8rem;
-}
-
-.faq-question.active::after {
-    content: '⌃';
-    /* Chevron up */
-}
-
 .faq-answer {
     max-height: 0;
     padding: 0 15px;
@@ -276,4 +262,270 @@ body {
 
 .faq-item.active {
     padding-bottom: 10px;
+}
+
+#pdf-image{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    /* Ensure the image covers the container */
+        object-fit: cover;
+}
+/* Media Query */
+#download-button{
+    position: absolute;
+    bottom: 10px;
+    left: 10%;
+    text-decoration: none;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    font-weight: semibold;
+    padding: 12px;
+    width: 70%;
+    border: none;
+    border-radius: 30px;
+}
+
+#download-wrapper {
+    position:relative
+}
+
+@media (max-width: 576px) {
+    .image-wrapper {
+        width: 90vw;
+        height: calc(90vw * 0.562);
+        /* 16:9 aspect ratio approx */
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+
+        padding: 20px;
+        width: 100%;
+        height: 80vh;
+
+        overflow-y: auto;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        animation: slideUp 0.3s ease-out;
+
+        margin: 0;
+        /* 🟢 ensure no margin */
+        box-sizing: border-box;
+        /* 🟢 ensures padding doesn't expand box */
+    }
+
+    .close {
+        position: absolute;
+        top: 5%;
+        left: 90%;
+        color: #aaa;
+        float: right;
+        font-size: 36px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+    }
+
+    .modal-content .heading {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* Register Form */
+
+.form-header {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.form-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 500px;
+    /* or whatever size you want */
+    margin: 0 auto;
+    /* centers the card */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-card h2 {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.mandatory-note {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.ambassador-form input,
+.ambassador-form select,
+.ambassador-form textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(165, 163, 163);
+    font-size: 16px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    border: none;
+}
+
+.phone-wrapper {
+    display: flex;
+    gap: 5px;
+}
+
+#country-code-select {
+    width: 40%;
+    background-color: #c2b5b5;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.submit-button {
+    background-color: gray;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+/* Thankyou  message */
+
+#thank-you-wrapper {
+    display: none;
+    position: relative;
+    /*
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f5f5f5;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 30px 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1000; */
+}
+#thank-you-message {
+    background: #b2b0b0;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    padding: 30px 20px;
+    width: 40%;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1000;
+}
+
+#decorative {
+    position: absolute;
+    top: 30px;
+    left: 22%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(122, 29, 29);
+    border-radius: 50%;
+}
+
+#thank-you-wrapper h2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 600;
+    width:fit-content
+}
+
+#thank-you-wrapper p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#close-modal {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-button:disabled {
+    background-color: #524d4d;
+}
+
+.submit-button:enabled {
+    background-color: #000000;
+    
 }
